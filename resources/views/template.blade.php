@@ -33,15 +33,14 @@
         <div class="row bg-secondary py-2 px-xl-5">
             <div class="col-lg-6 d-none d-lg-block">
                 <div class="d-inline-flex align-items-center">
-                    @guest
+                    @if(session('id_user') == null)
                     <span class="text-muted px-2">|</span>
-                    <a class="text-dark" href="{{route('register')}}">Daftar</a>
+                    <a class="text-dark" href="{{route('registert')}}">Daftar</a>
                     <span class="text-muted px-2">|</span>
-                    <a class="text-dark" href="{{route('login')}}">Masuk</a>
-                    @endguest
-                    @auth
+                    <a class="text-dark" href="{{route('logint')}}">Masuk</a>
+                    @else
                     <span class="text-muted px-2">|</span>
-                    <a class="text-dark" href="{{route('akun')}}">Akun {{Auth::user()->id}}</a>
+                    <a class="text-dark" href="{{route('akun')}}">Akun {{session('id_user')}}</a>
                     <span class="text-muted px-2">|</span>
 
                     <form id="formLogout" method="post" action="{{route('logout')}}">
@@ -55,7 +54,7 @@
                             $('#formLogout').submit();
                         }
                     </script>
-                    @endauth
+                    @endif
 
 
 
