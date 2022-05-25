@@ -15,7 +15,7 @@ class KeranjangController extends Controller
         return view ('Keranjang.keranjang');
 
         }else{
-            return redirect()->route('login');
+            return redirect()->route('logint');
 
         }
 
