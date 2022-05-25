@@ -40,6 +40,9 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'member' => [
+            'driver' => 'session',
+            'provider' => 'tb_user',
         'login' => [
             'driver' => 'session',
             'provider' => 'userapps',
@@ -67,6 +70,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'tb_user' => [
+            'driver' => 'database',
+            'table'     => 'tb_user',
+            'model' => App\Models\Login::class,
         ],
         'userapps' => [
             'driver' => 'database',

@@ -1,12 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\Homecontroller;
+use App\Http\Controllers\Detailcontroller;
+use App\Http\Controllers\KeranjangController;
+use App\Http\Controllers\AkunController;
+use App\Http\Controllers\LoginController;
+
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\KategoriController;
 use App\Http\Controllers\admin\BarangController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\UserappController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +30,29 @@ use App\Http\Controllers\admin\UserappController;
 
 
 //route frontend ini untuk ica
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/',[Homecontroller::class, 'index'])->name('home');
+
+
+
+Route::group(['middleware'=>'guest:member'],function(){
+    Route::get('login',[LoginController::class,'login'])->name('login');
+    Route::post('aksilogin',[LoginController::class,'aksilogin'])->name('aksilogin');
+    Route::get('register',[LoginController::class,'register'])->name('register');
+    Route::post('input',[LoginController::class,'input'])->name('input');
+
+
+
+});
+
+Route::group(['middleware'=>['web','auth:member']],function(){
+    Route::get('home',[HomeController::class,'index'])->name('home');
+    Route::get('keranjang',[KeranjangController::class,'keranjang'])->name('keranjang');
+    Route::get('akun',[AkunController::class,'akun'])->name('akun');
+    Route::post('edit/akun/{id}',[AkunController::class,'editakun'])->name('editakun');
+    // Route::get('akun/{id}',[AkunController::class,'akun'])->name('akun');
+    Route::post('logout',[Logincontroller::class,'logout'])->name('logout');
+Route::get('detail',[DetailController::class,'detail'])->name('detail');
+
 });
 
 
