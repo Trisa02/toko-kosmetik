@@ -43,6 +43,9 @@ return [
         'member' => [
             'driver' => 'session',
             'provider' => 'tb_user',
+        'login' => [
+            'driver' => 'session',
+            'provider' => 'userapps',
         ],
     ],
 
@@ -73,6 +76,12 @@ return [
             'table'     => 'tb_user',
             'model' => App\Models\Login::class,
         ],
+        'userapps' => [
+            'driver' => 'database',
+            'table' => 'userapps',
+            'model' => App\Models\Userapp::class,
+        ],
+
 
         // 'users' => [
         //     'driver' => 'database',
