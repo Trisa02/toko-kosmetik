@@ -32,13 +32,14 @@ use App\Http\Controllers\admin\DiskonController;
 
 //route frontend ini untuk ica
 Route::get('/',[Homecontroller::class, 'index'])->name('home');
+Route::get('detail',[DetailController::class,'detail'])->name('detail');
 
 
 
 Route::group(['middleware'=>'guest:member'],function(){
-    Route::get('login',[LoginController::class,'login'])->name('login');
-    Route::post('aksilogin',[LoginController::class,'aksilogin'])->name('aksilogin');
-    Route::get('register',[LoginController::class,'register'])->name('register');
+    Route::get('logint',[LoginController::class,'logint'])->name('logint');
+    Route::post('aksilogint',[LoginController::class,'aksilogint'])->name('aksilogint');
+    Route::get('registert',[LoginController::class,'register'])->name('registert');
     Route::post('input',[LoginController::class,'input'])->name('input');
 
 
@@ -52,15 +53,16 @@ Route::group(['middleware'=>['web','auth:member']],function(){
     Route::post('edit/akun/{id}',[AkunController::class,'editakun'])->name('editakun');
     // Route::get('akun/{id}',[AkunController::class,'akun'])->name('akun');
     Route::post('logout',[Logincontroller::class,'logout'])->name('logout');
-Route::get('detail',[DetailController::class,'detail'])->name('detail');
 
 });
 
 
 
 //route backend ini untuk dian
+
 Route::group(['prefix' => 'admin'],function () {
     	Route::get('index',[DashboardController::class, 'index'])->name('index');
+
     	Route::get('brand',[BrandController::class, 'brand'])->name('brand');
     	Route::get('input_brand',[BrandController::class, 'input_brand'])->name('input_brand');
     	Route::post('save_data',[BrandController::class, 'save_data'])->name('save_data');

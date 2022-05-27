@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
-    public function login(){
+    public function logint(){
         return view ('login');
     }
 
@@ -46,19 +46,26 @@ class LoginController extends Controller
         return redirect('/');
     }
 
-    public function aksilogin(Request $r){
+    public function aksilogint(Request $r){
         $login = $r->validate([
             'username'=>'required',
             'password'=>'required',
         ]);
         if(Auth::guard('member')->attempt($login)){
-            $r->session()->regenerate();
-            return redirect()->route('home');
+            $user = DB::table('tb_user')->where('username',$r->username)->first();
+            if(password_verify($r->password,$user->password))
+            {
+                $r->session()->regenerate();
+                $r->session()->put('id_user',$user->id);
+                return redirect()->route('home');
+
+            }
         }
         return back();
     }
 
     public function logout(Request $r){
+        $r->session()->forget('id_user');
         Auth::guard('member')->logout();
         $r->session()->regenerateToken();
         return redirect('/');
