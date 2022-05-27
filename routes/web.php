@@ -14,6 +14,7 @@ use App\Http\Controllers\admin\KategoriController;
 use App\Http\Controllers\admin\BarangController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\UserappController;
+use App\Http\Controllers\admin\DiskonController;
 
 
 /*
@@ -58,15 +59,12 @@ Route::get('detail',[DetailController::class,'detail'])->name('detail');
 
 
 //route backend ini untuk dian
-Route::prefix('admin')
-	->namespace('admin')->group(function () {
-    	Route::get('/',[DashboardController::class, 'index'])->name('home');
+Route::group(['prefix' => 'admin'],function () {
+    	Route::get('index',[DashboardController::class, 'index'])->name('index');
     	Route::get('brand',[BrandController::class, 'brand'])->name('brand');
     	Route::get('input_brand',[BrandController::class, 'input_brand'])->name('input_brand');
     	Route::post('save_data',[BrandController::class, 'save_data'])->name('save_data');
-    	Route::get('edit_brand/{id_brand}',[BrandController::class, 'edit_brand'])->name('edit_brand');
-    	Route::post('update_brand',[BrandController::class, 'update_brand'])->name('update_brand');
-    	Route::get('hapus_brand/{id_brand}',[BrandController::class, 'hapus_brand'])->name('hapus_brand');
+        Route::get('hapus_brand/{id_brand}',[BrandController::class, 'hapus_brand'])->name('hapus_brand');
 
     	Route::get('kategori',[KategoriController::class, 'kategori'])->name('kategori');
     	Route::get('input_kategori',[KategoriController::class, 'input_kategori'])->name('input_kategori');
@@ -90,8 +88,19 @@ Route::prefix('admin')
     	Route::get('hapus_slider/{id_slider}',[SliderController::class, 'hapus_slider'])->name('hapus_slider');
 
     	Route::get('user',[UserappController::class, 'userapp'])->name('user');
-    	Route::get('login',[UserappController::class, 'login'])->name('login');
+        Route::get('input_user',[UserappController::class, 'input_user'])->name('input_user');
+        Route::post('save_user',[UserappController::class, 'save_user'])->name('save_user');
+        Route::get('edit_user/{id}',[UserappController::class, 'edit_user'])->name('edit_user');
+        Route::post('update_user',[UserappController::class, 'update_user'])->name('update_user');
+        Route::get('hapus_user/{id}',[UserappController::class, 'hapus_user'])->name('hapus_user');
+    	Route::get('/',[UserappController::class, 'login'])->name('login');
     	Route::post('aksi_login',[UserappController::class, 'aksi_login'])->name('aksi_login');
-    	Route::get('register',[UserappController::class, 'register'])->name('register');
-    	Route::post('daftar',[UserappController::class, 'daftar'])->name('daftar');
+        Route::post('adminLogout',[UserappController::class,'adminLogout'])->name('adminLogout');
+
+        Route::get('member',[AkunController::class, 'member'])->name('member');
+
+        Route::get('diskon',[DiskonController::class, 'diskon'])->name('diskon');
+        Route::get('input_diskon',[DiskonController::class, 'input_diskon'])->name('input_diskon');
+        Route::post('save_diskon',[DiskonController::class, 'save_diskon'])->name('save_diskon');
+        Route::get('hapus_diskon/{id_diskon}',[DiskonController::class, 'hapus_diskon'])->name('hapus_diskon');
 });

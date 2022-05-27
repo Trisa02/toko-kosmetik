@@ -43,6 +43,7 @@ return [
         'member' => [
             'driver' => 'session',
             'provider' => 'tb_user',
+        ],
         'login' => [
             'driver' => 'session',
             'provider' => 'userapps',

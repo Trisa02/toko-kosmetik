@@ -74,6 +74,10 @@
 
                      <li><a href="{{route('user')}}"><i class="fa fa-clone yellow_color"></i> <span>User</span></a></li>
 
+                     <li><a href="{{route('member')}}"><i class="fa fa-object-group green_color"></i> <span>Member</span></a></li>
+
+                     <li><a href="{{route('diskon')}}"><i class="fa fa-paper-plane red_color"></i> <span>Diskon</span></a></li>
+
                      <!-- <li><a href=""><i class="fa fa-diamond yellow_color"></i> <span>User</span></a></li> -->
                      
                   </ul>
@@ -104,7 +108,11 @@
                                        <a class="dropdown-item" href="profile.html">My Profile</a>
                                        <a class="dropdown-item" href="settings.html">Settings</a>
                                        <a class="dropdown-item" href="help.html">Help</a>
-                                       <a class="dropdown-item" href="{{route('login')}}"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
+                                       <form action="{{route('adminLogout')}}" method="post">
+                                          @csrf
+
+                                          <input type="submit" name="Logout" class="dropdown-item"><span></span> <i class="fa fa-sign-out"></i></input>
+                                       </form>
                                     </div>
                                  </li>
                               </ul>
