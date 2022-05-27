@@ -18,8 +18,11 @@
                             <a href="" class="dropdown-item">Baby's Dresses</a>
                         </div>
                     </div> --}}
-                    <a href="" class="nav-item nav-link">Body Care</a>
-                    <a href="" class="nav-item nav-link">Make Up Wajah</a>
+                    @foreach ($kategori as $ktr)
+
+                    <a href="" class="nav-item nav-link">{{$ktr->nama_kategori}}</a>
+                    @endforeach
+                    {{-- <a href="" class="nav-item nav-link">Make Up Wajah</a>
                     <a href="" class="nav-item nav-link">Hair Care</a>
                     <a href="" class="nav-item nav-link">Parfum dan Wewangian</a>
                     <a href="" class="nav-item nav-link">Pembersih Make Up</a>
@@ -27,7 +30,7 @@
                     <a href="" class="nav-item nav-link">Alat Make Up dan Skincare</a>
                     <a href="" class="nav-item nav-link">Perawatan Kuku</a>
                     <a href="" class="nav-item nav-link">Make Up Mata</a>
-                    <a href="" class="nav-item nav-link">Make Up dan Perawatan bibir</a>
+                    <a href="" class="nav-item nav-link">Make Up dan Perawatan bibir</a> --}}
                 </div>
             </nav>
         </div>
@@ -398,24 +401,27 @@
             <h2 class="section-title px-5"><span class="px-2">Belanja Produk</span></h2>
         </div>
         <div class="row px-xl-5 pb-3">
+            @foreach ($barang as $brg)
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="card product-item border-0 mb-4">
                     <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                         <img class="img-fluid w-100" src="img/skii.jpg" alt="">
                     </div>
                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                        <h6 class="text-truncate mb-3">Facial Treatment Essence 230ml + Facial Treatment Clear Lotion 230ml</h6>
+                        <h6 class="text-truncate mb-3">{{$brg->nama_barang}}</h6>
                         <div class="d-flex justify-content-center">
-                            <h6>Rp 3.980.000</h6><h6 class="text-muted ml-2"></h6>
+                            <h6>Rp{{$brg->harga}}</h6><h6 class="text-muted ml-2"></h6>
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
-                        <a href="{{route('detail')}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="{{route('detail',$brg->id_barang)}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
                         <a href="{{route('keranjang')}}" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            @endforeach
+
+            {{-- <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="card product-item border-0 mb-4">
                     <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                         <img class="img-fluid w-100" src="img/bedak.jpg" alt="">
@@ -534,7 +540,7 @@
                         <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
     <!-- Products End -->
