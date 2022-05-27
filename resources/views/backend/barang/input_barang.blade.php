@@ -71,7 +71,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Detail</label>
-                                    <textarea name="detail" cols="30" rows="5"></textarea>
+                                    <textarea class="form-control" name="detail" cols="30" rows="5"></textarea>
                                     @error('detail')
                                     <i class="text-danger">{{$message}}</i>
                                     @enderror

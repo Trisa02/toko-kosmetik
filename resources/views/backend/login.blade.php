@@ -47,6 +47,8 @@
                   </div>
                   <div class="login_form">
                      <form action="{{route('aksi_login')}}" method="post">
+                        @csrf
+
                         <fieldset>
                            <div class="field">
                               <label class="label_field">Email Address</label>
@@ -56,12 +58,8 @@
                               <label class="label_field">Password</label>
                               <input type="password" name="password" placeholder="Password" />
                            </div>
-                           <div class="text-center">
-                              <a class="small" href="forgot-password.html">Forgot Password?</a>
-                           </div>
-                           <div class="text-center">
-                              <a class="small" href="{{route('register')}}">Create an Account!</a>
-                           </div><br><br>
+                           
+                           
                            <div class="text-center">
                               <button class="main_bt">Sing In</button>
                            </div>

@@ -5,16 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Userapp extends Model
+class Diskon extends Model
 {
     use HasFactory;
-    protected $table = 'userapps';
+    protected $table = 'diskons';
     protected $fillable = [
-        'id_user',
-        'nama_user',
-        'username',
-        'email',
-        'no_tlpn',
-        'password',
+        'id_barang',
+        'detail_diskon',
+        'gambar_diskon',
     ];
 }
