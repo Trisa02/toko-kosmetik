@@ -32,7 +32,7 @@ use App\Http\Controllers\admin\DiskonController;
 
 //route frontend ini untuk ica
 Route::get('/',[Homecontroller::class, 'index'])->name('home');
-Route::get('detail',[DetailController::class,'detail'])->name('detail');
+Route::get('detail/{id_barang}',[HomeController::class,'detail'])->name('detail');
 
 
 
