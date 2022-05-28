@@ -1,6 +1,6 @@
 @extends('backend.index')
 @section('title')
-	User
+	Member
 @endsection
 
 @section('content')
@@ -8,7 +8,7 @@
     <div class="row column_title">
         <div class="col-md-12">
             <div class="page_title">
-                 <h2>User</h2>
+                 <h2>Member</h2>
             </div>
         </div>
     </div>
@@ -17,7 +17,7 @@
 	        <div class="card">
 	            <div class="card-header">
 	                <div class="float-left">
-	                    <h5>Data User</h5>
+	                    <h5>Data Member</h5>
 	                </div>
 	                
 	            </div>

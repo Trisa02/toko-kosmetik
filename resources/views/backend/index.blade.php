@@ -8,7 +8,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Pluto - Responsive Bootstrap Admin Panel Templates</title>
+      <title>@yield('title')</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -64,7 +64,7 @@
                   <ul class="list-unstyled components">
                      <li><a href="{{route('home')}}"><i class="fa fa-table purple_color2"></i> <span>Dashboard</span></a></li>
 
-                     <li><a href="{{route('brand')}}"><i class="fa fa-table orange_color2"></i> <span>Brand</span></a></li>
+                     <li><a href="{{route('brand')}}"><i class="fa-solid fa-copyright"></i> <span>Brand</span></a></li>
 
                      <li><a href="{{route('kategori')}}"><i class="fa fa-briefcase blue1_color"></i> <span>Kategori</span></a></li>
 
@@ -74,7 +74,7 @@
 
                      <li><a href="{{route('user')}}"><i class="fa fa-clone yellow_color"></i> <span>User</span></a></li>
 
-                     <li><a href="{{route('member')}}"><i class="fa fa-object-group green_color"></i> <span>Member</span></a></li>
+                     <li><a href="{{route('member')}}"><i class="fa-solid fa-address-book"></i> <span>Member</span></a></li>
 
                      <li><a href="{{route('diskon')}}"><i class="fa fa-paper-plane red_color"></i> <span>Diskon</span></a></li>
 
