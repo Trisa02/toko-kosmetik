@@ -15,18 +15,11 @@
         <div class="col-lg-5 pb-5">
             <div id="product-carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner border">
+                    @foreach ($detail as $dtl)
                     <div class="carousel-item active">
-                        <img class="w-100 h-100" src="img/skii.jpg" alt="Image">
+                        <img class="w-100 h-100" src="{{asset('gambar/'.$dtl->gambar)}}" alt="">
                     </div>
-                    {{-- <div class="carousel-item">
-                        <img class="w-100 h-100" src="img/product-2.jpg" alt="Image">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="w-100 h-100" src="img/product-3.jpg" alt="Image">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="w-100 h-100" src="img/skii.jpg" alt="Image">
-                    </div> --}}
+                    @endforeach
                 </div>
                 <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
                     <i class="fa fa-2x fa-angle-left text-dark"></i>
@@ -36,9 +29,9 @@
                 </a>
             </div>
         </div>
-
+        @foreach ($detail as $dtl)
         <div class="col-lg-7 pb-5">
-            <h3 class="font-weight-semi-bold">Facial Treatment Essence 230ml + Facial Treatment Clear Lotion 230ml</h3>
+            <h3 class="font-weight-semi-bold">{{$dtl->nama_barang}}</h3>
             <div class="d-flex mb-3">
                 <div class="text-primary mr-2">
                     <small class="fas fa-star"></small>
@@ -49,59 +42,9 @@
                 </div>
                 <small class="pt-1">(50 Reviews)</small>
             </div>
-            <h3 class="font-weight-semi-bold mb-4">Rp 3.980.000</h3>
-            <h3 class="text-dark font-weight-medium mb-0 mr-2">Stok :</h3>
-            {{-- <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea. Sanc invidunt ipsum et, labore clita lorem magna lorem ut. Erat lorem duo dolor no sea nonumy. Accus labore stet, est lorem sit diam sea et justo, amet at lorem et eirmod ipsum diam et rebum kasd rebum.</p> --}}
-            {{-- <div class="d-flex mb-3">
-                <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
-                <form>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="size-1" name="size">
-                        <label class="custom-control-label" for="size-1">XS</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="size-2" name="size">
-                        <label class="custom-control-label" for="size-2">S</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="size-3" name="size">
-                        <label class="custom-control-label" for="size-3">M</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="size-4" name="size">
-                        <label class="custom-control-label" for="size-4">L</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="size-5" name="size">
-                        <label class="custom-control-label" for="size-5">XL</label>
-                    </div>
-                </form>
-            </div> --}}
-            {{-- <div class="d-flex mb-4">
-                <p class="text-dark font-weight-medium mb-0 mr-3">Colors:</p>
-                <form>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="color-1" name="color">
-                        <label class="custom-control-label" for="color-1">Black</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="color-2" name="color">
-                        <label class="custom-control-label" for="color-2">White</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="color-3" name="color">
-                        <label class="custom-control-label" for="color-3">Red</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="color-4" name="color">
-                        <label class="custom-control-label" for="color-4">Blue</label>
-                    </div>
-                    <div class="custom-control custom-radio custom-control-inline">
-                        <input type="radio" class="custom-control-input" id="color-5" name="color">
-                        <label class="custom-control-label" for="color-5">Green</label>
-                    </div>
-                </form>
-            </div> --}}
+            <h3 class="font-weight-semi-bold mb-4">Rp.{{$dtl->harga}}</h3>
+            <h3 class="text-dark font-weight-medium mb-0 mr-2">Stok :{{$dtl->stok}}</h3>
+
             <div class="d-flex align-items-center mb-4 pt-2">
                 <div class="input-group quantity mr-3" style="width: 130px;">
                     <div class="input-group-btn">
@@ -136,6 +79,8 @@
                 </div>
             </div>
         </div>
+        @endforeach
+
     </div>
     <div class="row px-xl-5">
         <div class="col">
@@ -147,24 +92,7 @@
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="tab-pane-1">
                     <h4 class="mb-3">Product Description</h4>
-                    <p>GUNAKAN TAMBAHAN DUS DAN BUBBLE WRAP UNTUK PAKET LEBIH AMAN DAN GUNAKAN EKSPEDISI SHOPEE EXPRESS
-                        SK-II Facial Treatment Essence  75 ml
-                        READY STOCK
-                        EXP 2023
-                        Telah terbukti. Kulit sebening kristal anda dapat bertahan hingga 10,20,30 tahun dari sekarang
-                        Key Ingredient: Pitera Produk andalan SK-II yang dinobatkan sebagai yang terlaris dan banyak dicintai, Facial Treatment Essence memiliki lebih dari 90% Pitera, bahan yang ditemukan lebih dari 30 tahun yang lalu namun masih tetap sama hingga hari ini. b Formula yang tak tergantikan ini dengan lembut membantu mengangkat sel kulit mati pada permukaan kulit wajah dan membantu siklus peremajaan permukaan kulit.
-
-                        Hanya dalam 14 hari dengan pemakaian teratur, membantu mentransformasi 5 dimensi kulit Anda: membantu menyamarkan bintik hitam, membantu mengurangi tampilan kerutan, membantu menyempurnakan tekstur kulit, kulit terasa lebih kencang serta membantu kulit tampak lebih cerah.
-                        Kulit tampak lebih bersinar menawan sebening kristal.
-
-                        Tekstur:
-                        Miracle Water ringan yang cepat meresap ke dalam kulit.
-                        Ulasan Produk
-                        Tulis Ulasan Produk
-                        BAHAN-BAHAN
-                        CARA PENGGUNAAN
-
-                        Basahi kapas dan usapkan lembut pada wajah selama 1 menit. Gunakan sisi sebaliknya dan tepuk-tepuk perlahan wajah serta leher Anda selama 1 menit. Lakukan ini setiap pagi dan malam setelah membersihkan wajah dan memakai toner.</p>
+                    <p>{{$dtl->detail}}</p>
 
                 </div>
                 <div class="tab-pane fade" id="tab-pane-3">
@@ -230,81 +158,25 @@
     <div class="row px-xl-5">
         <div class="col">
             <div class="owl-carousel related-carousel">
+                @foreach ($barang as $brg)
                 <div class="card product-item border-0">
                     <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                        <img class="img-fluid w-100" src="img/product-1.jpg" alt="">
+                        <img class="img-fluid w-100" src="{{asset('gambar/'.$brg->gambar)}}" alt="">
                     </div>
                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                        <h6 class="text-truncate mb-3">{{$brg->nama_barang}}</h6>
                         <div class="d-flex justify-content-center">
-                            <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                            <h6>{{$brg->harga}}</h6>
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
-                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                        <a href="{{route('detail',$brg->id_barang)}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
                         <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                     </div>
                 </div>
-                <div class="card product-item border-0">
-                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                        <img class="img-fluid w-100" src="img/product-2.jpg" alt="">
-                    </div>
-                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                        <div class="d-flex justify-content-center">
-                            <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex justify-content-between bg-light border">
-                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                    </div>
-                </div>
-                <div class="card product-item border-0">
-                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                        <img class="img-fluid w-100" src="img/product-3.jpg" alt="">
-                    </div>
-                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                        <div class="d-flex justify-content-center">
-                            <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex justify-content-between bg-light border">
-                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                    </div>
-                </div>
-                <div class="card product-item border-0">
-                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                        <img class="img-fluid w-100" src="img/product-4.jpg" alt="">
-                    </div>
-                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                        <div class="d-flex justify-content-center">
-                            <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex justify-content-between bg-light border">
-                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                    </div>
-                </div>
-                <div class="card product-item border-0">
-                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                        <img class="img-fluid w-100" src="img/product-5.jpg" alt="">
-                    </div>
-                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                        <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                        <div class="d-flex justify-content-center">
-                            <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                        </div>
-                    </div>
-                    <div class="card-footer d-flex justify-content-between bg-light border">
-                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                        <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                    </div>
-                </div>
+                @endforeach
+
+
             </div>
         </div>
     </div>

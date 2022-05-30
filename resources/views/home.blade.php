@@ -10,7 +10,8 @@
             </a>
             <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical" style="overflow: scroll">
                 <div class="navbar-nav w-100 " style="height: 400px;">
-                    {{-- <div class="nav-item dropdown">
+                    @foreach ($kategori as $ktr)
+                        {{-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link" data-toggle="dropdown">Dresses <i class="fa fa-angle-down float-right mt-1"></i></a>
                         <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
                             <a href="" class="dropdown-item">Men's Dresses</a>
@@ -18,10 +19,9 @@
                             <a href="" class="dropdown-item">Baby's Dresses</a>
                         </div>
                     </div> --}}
-                    @foreach ($kategori as $ktr)
 
                     <a href="" class="nav-item nav-link">{{$ktr->nama_kategori}}</a>
-                    @endforeach
+
                     {{-- <a href="" class="nav-item nav-link">Make Up Wajah</a>
                     <a href="" class="nav-item nav-link">Hair Care</a>
                     <a href="" class="nav-item nav-link">Parfum dan Wewangian</a>
@@ -31,6 +31,9 @@
                     <a href="" class="nav-item nav-link">Perawatan Kuku</a>
                     <a href="" class="nav-item nav-link">Make Up Mata</a>
                     <a href="" class="nav-item nav-link">Make Up dan Perawatan bibir</a> --}}
+
+                    @endforeach
+
                 </div>
             </nav>
         </div>
@@ -405,12 +408,14 @@
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="card product-item border-0 mb-4">
                     <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                        <img class="img-fluid w-100" src="img/skii.jpg" alt="">
+                        <img class="img-fluid w-100" src="{{asset('gambar/'.$brg->gambar)}}" alt="">
                     </div>
                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                         <h6 class="text-truncate mb-3">{{$brg->nama_barang}}</h6>
                         <div class="d-flex justify-content-center">
+
                             <h6>Rp{{$brg->harga}}</h6><h6 class="text-muted ml-2"></h6>
+
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
@@ -551,36 +556,22 @@
         <div class="text-center mb-4">
             <h2 class="section-title px-5"><span class="px-2">Belanja Brands</span></h2>
         </div>
+
         <div class="row px-xl-5">
             <div class="col">
+
                 <div class="owl-carousel vendor-carousel">
+                    @foreach ($brands as $brd)
                     <div class="vendor-item border p-4">
-                        <img src="img/sephora.jpg" alt="">
+                        <img src="{{asset('gambar/'.$brd->foto_brand)}}" alt="">
                     </div>
-                    <div class="vendor-item border p-4">
-                        <img src="img/dior.png" alt="">
-                    </div>
-                    <div class="vendor-item border p-4">
-                        <img src="img/something.jpg" alt="">
-                    </div>
-                    <div class="vendor-item border p-4">
-                        <img src="img/sk.png" alt="">
-                    </div>
-                    <div class="vendor-item border p-4">
-                        <img src="img/wardah.png" alt="">
-                    </div>
-                    <div class="vendor-item border p-4">
-                        <img src="img/emina.png" alt="">
-                    </div>
-                    <div class="vendor-item border p-4">
-                        <img src="img/luxcrime.jpg" alt="">
-                    </div>
-                    <div class="vendor-item border p-4">
-                        <img src="img/makeover.png" alt="">
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
+
+
+
     </div>
     <!-- Vendor End -->
 @endsection
