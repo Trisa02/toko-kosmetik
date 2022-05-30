@@ -11,5 +11,6 @@ class Brand extends Model
     protected $table = 'tb_brand';
     protected $fillable = [
         'nama_brand',
+        'foto_brand',
     ];
 }

@@ -25,6 +25,7 @@ class BrandController extends Controller
     {
         $validator = Validator::make($r->all(),[
             'nama_brand' => 'required',
+            'foto_brand' => 'required'
         ]);
 
         if($validator->fails()){
@@ -33,8 +34,13 @@ class BrandController extends Controller
                 ->withInput();
         }
         
+        $file= $r->file('foto_brand');
+        $fileName= $file->getClientOriginalName();
+        $file->move('gambar/', $fileName);
+
         $simpan = Brand::insert([
             'nama_brand' => $r->nama_brand,
+            'foto_brand' => $fileName,
             
         ]);
 
@@ -45,40 +51,7 @@ class BrandController extends Controller
         }
 
     }
-
-    public function edit_brand($id)
-    {
-            $data['brand'] = DB ::table('tb_brand')->where('id_brand', $id)->first();
-            return view('backend.brand.edit',$data);
-    }
-
-    public function update_brand(Request $r)
-    {
-    	$id=$r->id_brand;
-        $validator = Validator::make($r->all(),[
-            'nama_brand' => 'required',
-        ]);
-
-        if($validator->fails()){
-            return redirect('input_brand')
-                ->withErrors($validator)
-                ->withInput();
-        }
-
-        $simpan = Brand::where('id_brand', $id)->update([
-           'nama_brand' => $r->nama_brand,
-        ]);
-        
-
-       
-        if ($simpan == TRUE) {
-            return redirect()->route('brand')->with('success','Data berhasil Diedit');
-        }else{
-            return redirect()->route('edit_brand',$id)->with('error','Data gagal diedit');
-        }
-
-    }
-
+    
     public function hapus_brand($id)
     {
 

@@ -8,7 +8,7 @@
                     <div class="row column_title">
                         <div class="col-md-12">
                            <div class="page_title">
-                              <h2>Dashboard</h2>
+                              <h2>Brand</h2>
                            </div>
                         </div>
                     </div>
@@ -29,6 +29,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama Brand</th>
+                            <th>Foto Brand</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -37,8 +38,9 @@
                         <tr>
                             <td>{{ $i + 1 }}</td>
                             <td>{{ $isi->nama_brand }}</td>
+                            <td><img src="{{asset('gambar/'. $isi->foto_brand)}}" width="30%" alt=""></td>
                             <td>
-                                <a href="{{route('edit_brand',$isi->id_brand)}}" class=" btn btn-warning"><i class="fa fa-edit"></i></a>
+                                
                                 <a href="{{route('hapus_brand',$isi->id_brand)}}" class=" btn btn-danger"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>

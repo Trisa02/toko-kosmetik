@@ -16,6 +16,7 @@ class CreateTbBrandTable extends Migration
         Schema::create('tb_brand', function (Blueprint $table) {
             $table->id('id_brand');
             $table->string('nama_brand');
+            $table->string('foto_brand');
             $table->timestamps();
         });
     }

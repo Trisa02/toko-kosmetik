@@ -32,8 +32,8 @@
                             <th>Nama Brand</th>
                             <th>Nama Barang</th>
                             <th>Stok</th>
-                            <th>Detail</th>
                             <th>Harga</th>
+                            <th>Detail</th>
                             <th>Gambar</th>
                             <th>Aksi</th>
                         </tr>

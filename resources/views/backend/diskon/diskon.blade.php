@@ -1,6 +1,6 @@
 @extends('backend.index')
 @section('title')
-	User
+	Diskon
 @endsection
 
 @section('content')
@@ -8,7 +8,7 @@
     <div class="row column_title">
         <div class="col-md-12">
             <div class="page_title">
-                 <h2>User</h2>
+                 <h2>Diskon</h2>
             </div>
         </div>
     </div>
@@ -17,10 +17,10 @@
 	        <div class="card">
 	            <div class="card-header">
 	                <div class="float-left">
-	                    <h5>Data User</h5>
+	                    <h5>Data Diskon</h5>
 	                </div>
 	                <div class="float-right">
-	                    <a href="{{route('input_user')}}" class="btn btn-info btn-sm">Tambah User</a>
+	                    <a href="{{route('input_diskon')}}" class="btn btn-info btn-sm">Tambah Data</a>
 	                </div>
 	            </div>
 	            <div class="card-body">
@@ -28,27 +28,22 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama User</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>No. Telepon</th>
-                            <th>Password</th>
+                            <th>Nama Barang</th>
+                            <th>Detail Diskon</th>
+                            <th>Gambar</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        @foreach($user as $i=> $isi)
+                        @foreach($diskon as $i=> $isi)
                         <tr>
                             <td>{{ $i + 1 }}</td>
-                            <td>{{ $isi->nama_user }}</td>
-                            <td>{{ $isi->username }}</td>
-                            <td>{{ $isi->email }}</td>
-                            <td>{{ $isi->no_tlpn }}</td>
-                            <td>{{ $isi->password }}</td>
+                            <td>{{ $isi->nama_barang }}</td>
+                            <td>{{ $isi->detail_diskon }}</td>
+                            <td><img src="{{asset('gambar/'. $isi->gambar_diskon)}}" width="30%" alt=""></td>
                             <td>
-                                <a href="{{route('edit_user',$isi->id)}}" class=" btn btn-warning btn-block "><i class="fa fa-edit"></i></a>
-                                <a href="{{route('hapus_user',$isi->id)}}" class=" btn btn-danger  btn-block "><i class="fa fa-trash"></i></a>
+                                <a href="{{route('hapus_diskon',$isi->id_diskon)}}" class=" btn btn-danger  btn-block "><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                         @endforeach
@@ -59,6 +54,5 @@
 	        </div>
 	    </div>
 	</div>
-
 
 @endsection

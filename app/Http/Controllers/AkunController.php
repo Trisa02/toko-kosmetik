@@ -9,6 +9,12 @@ use Auth;
 
 class AkunController extends Controller
 {
+    public function member ()
+    {
+       $data['member'] = DB::table('tb_user')->get();
+       return view('backend.member.member', $data);
+    }
+
     public function akun(){
         $id = Auth::user()->id;
         $data['akun'] = DB::table('tb_user')->where('id',$id)->first();
