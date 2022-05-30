@@ -35,7 +35,6 @@ Route::get('/',[Homecontroller::class, 'index'])->name('home');
 Route::get('detail/{id_barang}',[HomeController::class,'detail'])->name('detail');
 
 
-
 Route::group(['middleware'=>'guest:member'],function(){
     Route::get('logint',[LoginController::class,'logint'])->name('logint');
     Route::post('aksilogint',[LoginController::class,'aksilogint'])->name('aksilogint');
