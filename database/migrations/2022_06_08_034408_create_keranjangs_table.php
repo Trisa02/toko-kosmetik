@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDiskonsTable extends Migration
+class CreateKeranjangsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class CreateDiskonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('diskons', function (Blueprint $table) {
-            $table->id('id_diskon');
+        Schema::create('keranjangs', function (Blueprint $table) {
+            $table->id('id_keranjang');
+            $table->string('id_transaksi');
             $table->string('id_barang');
-            $table->string('detail_diskon');
-            $table->string('gambar_diskon');
+            $table->string('stok');
+            $table->string('tanggal');
+            $table->string('detail');
+            $table->string('harga');
+            $table->string('total');
             $table->timestamps();
         });
     }
@@ -29,6 +33,6 @@ class CreateDiskonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('diskons');
+        Schema::dropIfExists('keranjangs');
     }
 }

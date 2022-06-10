@@ -82,6 +82,13 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label for="">Berat</label>
+                                    <input type="text" name="berat" value="{{$barang->berat}}"  class="form-control" placeholder="Berat">
+                                    @error('berat')
+                                    <i class="text-danger">{{$message}}</i>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <label for="">Detail</label>
                                     <textarea class="form-control" name="detail" value="" cols="30" rows="5">{{$barang->detail}}</textarea>
                                     @error('detail')

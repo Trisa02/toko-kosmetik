@@ -15,6 +15,7 @@ use App\Http\Controllers\admin\BarangController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\UserappController;
 use App\Http\Controllers\admin\DiskonController;
+use App\Http\Controllers\admin\KeranjanggController;
 
 
 /*
@@ -61,7 +62,14 @@ Route::group(['middleware'=>['web','auth:member']],function(){
 //route backend ini untuk dian
 
 Route::group(['prefix' => 'admin'],function () {
-    	Route::get('index',[DashboardController::class, 'index'])->name('index');
+
+
+    
+        Route::get('/',[UserappController::class, 'login'])->name('login');
+        Route::post('aksi_login',[UserappController::class, 'aksi_login'])->name('aksi_login');
+    	Route::get('dashboard',[DashboardController::class, 'index'])->name('dashboard');
+
+
 
     	Route::get('brand',[BrandController::class, 'brand'])->name('brand');
     	Route::get('input_brand',[BrandController::class, 'input_brand'])->name('input_brand');
@@ -95,8 +103,8 @@ Route::group(['prefix' => 'admin'],function () {
         Route::get('edit_user/{id}',[UserappController::class, 'edit_user'])->name('edit_user');
         Route::post('update_user',[UserappController::class, 'update_user'])->name('update_user');
         Route::get('hapus_user/{id}',[UserappController::class, 'hapus_user'])->name('hapus_user');
-    	Route::get('/',[UserappController::class, 'login'])->name('login');
-    	Route::post('aksi_login',[UserappController::class, 'aksi_login'])->name('aksi_login');
+    	
+    	
         Route::post('adminLogout',[UserappController::class,'adminLogout'])->name('adminLogout');
 
         Route::get('member',[AkunController::class, 'member'])->name('member');
@@ -105,4 +113,11 @@ Route::group(['prefix' => 'admin'],function () {
         Route::get('input_diskon',[DiskonController::class, 'input_diskon'])->name('input_diskon');
         Route::post('save_diskon',[DiskonController::class, 'save_diskon'])->name('save_diskon');
         Route::get('hapus_diskon/{id_diskon}',[DiskonController::class, 'hapus_diskon'])->name('hapus_diskon');
+
+        Route::get('keranjang',[KeranjanggController::class, 'keranjang'])->name('keranjang');
+        Route::get('input_keranjang',[KeranjanggController::class, 'input_keranjang'])->name('input_keranjang');
+        Route::post('save_keranjang',[KeranjanggController::class, 'save_keranjang'])->name('save_keranjang');
+        Route::get('edit_keranjang/{id}',[KeranjanggController::class, 'edit_keranjang'])->name('edit_keranjang');
+        Route::post('update_keranjang',[KeranjanggController::class, 'update_keranjang'])->name('update_keranjang');
+        Route::get('hapus_keranjang/{id}',[KeranjanggController::class, 'hapus_keranjang'])->name('hapus_keranjang');
 });
