@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Barang;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
 class BarangController extends Controller
@@ -34,6 +35,7 @@ class BarangController extends Controller
             'nama_barang' => 'required',
             'stok' => 'required',
             'harga' => 'required',
+            'berat' => 'required',
             'detail' => 'required',
             'gambar' => 'required',
         ]);
@@ -46,14 +48,16 @@ class BarangController extends Controller
         $file= $r->file('gambar');
         $fileName= $file->getClientOriginalName();
         $file->move('gambar/', $fileName);
-        
+
         $simpan = Barang::insert([
             'id_kategori' => $r->id_kategori,
             'id_brand' => $r->id_brand,
             'nama_barang' => $r->nama_barang,
             'stok' => $r->stok,
             'harga' => $r->harga,
+            'berat' => $r->berat,
             'detail' => $r->detail,
+            'slug_barang' => Str::slug($r->nama_barang),
             'gambar' => $fileName,
             
         ]);
@@ -82,6 +86,7 @@ class BarangController extends Controller
             'nama_barang' => 'required',
             'stok' => 'required',
             'harga' => 'required',
+            'berat' => 'required',
             'detail' => 'required',
         ]);
 
@@ -97,7 +102,9 @@ class BarangController extends Controller
             'nama_barang' => $r->nama_barang,
             'stok' => $r->stok,
             'harga' => $r->harga,
+            'berat' => $r->berat,
             'detail' => $r->detail,
+            'slug_barang' => Str::slug($r->nama_barang),
           ]);
         }
         else{
@@ -117,7 +124,9 @@ class BarangController extends Controller
             'nama_barang' => $r->nama_barang,
             'stok' => $r->stok,
             'harga' => $r->harga,
+            'berat' => $r->berat,
             'detail' => $r->detail,
+            'slug_barang' => Str::slug($r->nama_barang),
             'gambar' => $fileName,
         ]);
         }

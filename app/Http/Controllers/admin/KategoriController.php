@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Kategori;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class KategoriController extends Controller
 {
@@ -36,6 +37,7 @@ class KategoriController extends Controller
         
         $simpan = Kategori::insert([
             'nama_kategori' => $r->nama_kategori,
+            'slug_kategori' => Str::slug($r->nama_kategori),
             
         ]);
 
@@ -68,6 +70,7 @@ class KategoriController extends Controller
 
         $simpan = Kategori::where('id_kategori', $id)->update([
            'nama_kategori' => $r->nama_kategori,
+           'slug_kategori' => Str::slug($r->nama_kategori),
         ]);
         
 

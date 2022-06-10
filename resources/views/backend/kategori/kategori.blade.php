@@ -29,6 +29,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama Kategori</th>
+                            <th>Slug</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -37,6 +38,7 @@
                         <tr>
                             <td>{{ $i + 1 }}</td>
                             <td>{{ $isi->nama_kategori }}</td>
+                            <td>{{ $isi->slug_kategori }}</td>
                             <td>
                                 <a href="{{route('edit_kategori',$isi->id_kategori)}}" class=" btn btn-warning"><i class="fa fa-edit"></i></a>
                                 <a href="{{route('hapus_kategori',['id_kategori' => $isi->id_kategori])}}" class=" btn btn-danger"><i class="fa fa-trash"></i></a>
