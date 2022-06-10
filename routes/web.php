@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Homecontroller;
 use App\Http\Controllers\Detailcontroller;
-use App\Http\Controllers\KeranjangController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\LoginController;
 
@@ -33,7 +33,10 @@ use App\Http\Controllers\admin\KeranjanggController;
 
 //route frontend ini untuk ica
 Route::get('/',[Homecontroller::class, 'index'])->name('home');
-Route::get('detail/{id_barang}',[HomeController::class,'detail'])->name('detail');
+Route::get('detail/{slug}',[HomeController::class,'detail'])->name('detail');
+Route::get('kategori-produk/{slug_kategori}',[HomeController::class,'kategori_produk'])->name('kategori.produk');
+Route::get('brands/{nama_barang}',[HomeController::class,'brands'])->name('kategori.brands');
+Route::get('/cari-barang/{tnama}',[HomeController::class,'cari'])->name('cari');
 
 
 Route::group(['middleware'=>'guest:member'],function(){
@@ -48,7 +51,11 @@ Route::group(['middleware'=>'guest:member'],function(){
 
 Route::group(['middleware'=>['web','auth:member']],function(){
     Route::get('home',[HomeController::class,'index'])->name('home');
-    Route::get('keranjang',[KeranjangController::class,'keranjang'])->name('keranjang');
+    Route::get('cart',[CartController::class,'cart'])->name('cart');
+    Route::post('simpan-cart',[CartController::class,'keranjang'])->name('simpan-cart');
+    Route::get('hapus-cart/{id}',[CartController::class,'hapus'])->name('hapus-cart');
+    Route::get('qtytambah/{id_keranjang}/{id_barang}',[CartController::class,'qtytambah'])->name('qtytambah');
+    Route::get('qtykurang/{id_keranjang}/{id_barang}',[CartController::class,'qtykurang'])->name('qtykurang');
     Route::get('akun',[AkunController::class,'akun'])->name('akun');
     Route::post('edit/akun/{id}',[AkunController::class,'editakun'])->name('editakun');
     // Route::get('akun/{id}',[AkunController::class,'akun'])->name('akun');
