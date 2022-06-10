@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Userapp;
 use Illuminate\Support\Facades\DB;
 
+use App\Models\UserModel;
+use Session;
+
+
 class UserappController extends Controller
 {
     public function userapp ()
@@ -47,7 +51,7 @@ class UserappController extends Controller
             'username' => $r->username,
             'email' => $r->email,
             'no_tlpn' => $r->no_tlpn,
-            'password' => $r->password,
+            'password' => Hash::make($r->password),
             
         ]);
 
@@ -118,20 +122,49 @@ class UserappController extends Controller
     }
 
 
+    // public function aksi_login(Request $r)
+    // {
+    // 	$aksi_login = $r->validate([
+    //         'email' => ['required'],
+    //         'password' => ['required'],
+    //     ]);
+
+
+    //     if (Auth::guard('login')->attempt($aksi_login)) {
+    //     	$r->session()->regenerate();
+
+    //     	return redirect('admin/index');
+    //     }
+
+    //     return back();
+    // }
+
     public function aksi_login(Request $r)
     {
-    	$aksi_login = $r->validate([
-            'email' => ['required'],
-            'password' => ['required'],
-        ]);
+        $email = $r->email;
+        $password = $r->password;
 
+        $data_user = UserModel::ChekLoginUser($email, $password);
 
-        if (Auth::guard('login')->attempt($aksi_login)) {
-        	$r->session()->regenerate();
-        	return redirect('admin/index');
+        if ($data_user == True) {
+
+            Session::put('nama_user', $data_user->nama_user);
+            Session::put('username', $data_user->username);
+            Session::put('email', $data_user->email);
+            Session::put('no_tlpn', $data_user->no_tlpn);
+
+            echo '<script>
+                    alert("Login Sukses")
+                    window.location = "dashboard"
+                </script>';
+
+        } else {
+
+            echo '<script>
+                alert("Username / Password Salah !")
+                window.location = "/admin"
+                </script>';
         }
-
-        return back();
     }
 
     public function adminLogout(Request $r){

@@ -1,6 +1,6 @@
 @extends('backend.index')
 @section('title')
-    Brand
+    Kategori
 @endsection
 
 @section('content')

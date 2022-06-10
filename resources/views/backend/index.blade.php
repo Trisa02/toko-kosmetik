@@ -51,7 +51,7 @@
                   <div class="sidebar_user_info">
                      <div class="icon_setting"></div>
                      <div class="user_profle_side">
-                        <div class="user_img"><img class="img-responsive" src="images/layout_img/user_img.jpg" alt="#" /></div>
+                        <div class="user_img"><img class="img-responsive" src="{{ asset('/')}}gambar/admin.png" alt="#" /></div>
                         <div class="user_info">
                            <h6>John David</h6>
                            <p><span class="online_animation"></span> Online</p>
@@ -64,7 +64,7 @@
                   <ul class="list-unstyled components">
                      <li><a href="{{route('home')}}"><i class="fa fa-table purple_color2"></i> <span>Dashboard</span></a></li>
 
-                     <li><a href="{{route('brand')}}"><i class="fa-solid fa-copyright"></i> <span>Brand</span></a></li>
+                     <li><a href="{{route('brand')}}"><i class="fa fa-object-group orange_color"></i> <span>Brand</span></a></li>
 
                      <li><a href="{{route('kategori')}}"><i class="fa fa-briefcase blue1_color"></i> <span>Kategori</span></a></li>
 
@@ -74,9 +74,11 @@
 
                      <li><a href="{{route('user')}}"><i class="fa fa-clone yellow_color"></i> <span>User</span></a></li>
 
-                     <li><a href="{{route('member')}}"><i class="fa-solid fa-address-book"></i> <span>Member</span></a></li>
+                     <li><a href="{{route('member')}}"><i class="fa fa-user blue2_color"></i> <span>Member</span></a></li>
 
                      <li><a href="{{route('diskon')}}"><i class="fa fa-paper-plane red_color"></i> <span>Diskon</span></a></li>
+
+                     <li><a href="{{route('keranjang')}}"><i class="fa fa-briefcase purple_color"></i> <span>Keranjang</span></a></li>
 
                      <!-- <li><a href=""><i class="fa fa-diamond yellow_color"></i> <span>User</span></a></li> -->
                      
@@ -91,19 +93,15 @@
                   <nav class="navbar navbar-expand-lg navbar-light">
                      <div class="full">
                         <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
-                        <div class="logo_section">
-                           <a href="index.html"><img class="img-responsive" src="images/logo/logo.png" alt="#" /></a>
-                        </div>
+                        <!-- <div class="logo_section">
+                           <a href="index.html"><img class="img-responsive" src="{{ asset('/')}}gambar/admin.jpg" alt="#" /></a>
+                        </div> -->
                         <div class="right_topbar">
                            <div class="icon_info">
-                              <ul>
-                                 <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a></li>
-                                 <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
-                                 <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a></li>
-                              </ul>
+                              
                               <ul class="user_profile_dd">
                                  <li>
-                                    <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="images/layout_img/user_img.jpg" alt="#" /><span class="name_user">John David</span></a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown"><img class="img-responsive rounded-circle" src="{{ asset('/')}}gambar/avatar.jpg" alt="#" /><span class="name_user">Admin</span></a>
                                     <div class="dropdown-menu">
                                        <a class="dropdown-item" href="profile.html">My Profile</a>
                                        <a class="dropdown-item" href="settings.html">Settings</a>

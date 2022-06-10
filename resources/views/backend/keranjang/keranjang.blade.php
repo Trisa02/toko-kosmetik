@@ -1,6 +1,6 @@
 @extends('backend.index')
 @section('title')
-	Barang
+	Keranjang
 @endsection
 
 @section('content')
@@ -8,7 +8,7 @@
     <div class="row column_title">
         <div class="col-md-12">
             <div class="page_title">
-                 <h2>Barang</h2>
+                 <h2>Keranjang</h2>
             </div>
         </div>
     </div>
@@ -17,10 +17,10 @@
 	        <div class="card">
 	            <div class="card-header">
 	                <div class="float-left">
-	                    <h5>Data Barang</h5>
+	                    <h5>Data Keranjang</h5>
 	                </div>
 	                <div class="float-right">
-	                    <a href="{{route('input_barang')}}" class="btn btn-info btn-sm">Tambah Data</a>
+	                    <a href="{{route('input_keranjang')}}" class="btn btn-info btn-sm">Tambah Data</a>
 	                </div>
 	            </div>
 	            <div class="card-body">
@@ -28,34 +28,30 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Kategori</th>
-                            <th>Nama Brand</th>
+                            <th>Id Transaksi</th>
                             <th>Nama Barang</th>
                             <th>Stok</th>
-                            <th>Harga</th>
+                            <th>Tanggal</th>
                             <th>Detail</th>
-                            <th>Berat</th>
-                            <th>Slug</th>
-                            <th>Gambar</th>
+                            <th>Harga</th>
+                            <th>Total</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($barang as $i=> $isi)
+                        @foreach($keranjang as $i=> $isi)
                         <tr>
                             <td>{{ $i + 1 }}</td>
-                            <td>{{ $isi->nama_kategori }}</td>
-                            <td>{{ $isi->nama_brand }}</td>
+                            <td>{{ $isi->id_transaksi }}</td>
                             <td>{{ $isi->nama_barang }}</td>
-                            <td>{{ $isi->stok }}</td>
-                            <td>{{ $isi->harga }}</td>
+                            <td>{{ $isi->stok_keranjang }}</td>
+                            <td>{{ $isi->tanggal }}</td>
                             <td>{{ $isi->detail }}</td>
-                            <td>{{ $isi->berat }}</td>
-                            <td>{{ $isi->slug_barang }}</td>
-                            <td><img src="{{asset('gambar/'. $isi->gambar)}}" width="30%" alt=""></td>
+                            <td>{{ $isi->harga }}</td>
+                            <td>{{ $isi->total }}</td></td>
                             <td>
-                                <a href="{{route('edit_barang',$isi->id_barang)}}" class=" btn btn-warning btn-block "><i class="fa fa-edit"></i></a>
-                                <a href="{{route('hapus_barang',$isi->id_barang)}}" class=" btn btn-danger  btn-block "><i class="fa fa-trash"></i></a>
+                                <a href="{{route('edit_keranjang',$isi->id_keranjang)}}" class=" btn btn-warning btn-block "><i class="fa fa-edit"></i></a>
+                                <a href="{{route('hapus_keranjang',$isi->id_keranjang)}}" class=" btn btn-danger  btn-block "><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                         @endforeach
