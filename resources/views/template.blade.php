@@ -23,11 +23,12 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{asset('/')}}css/style.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 
 </head>
 
 <body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!-- Topbar Start -->
     <div class="container-fluid">
         <div class="row bg-secondary py-2 px-xl-5">
@@ -77,34 +78,7 @@
                 </div>
             </div>
         </div>
-        <div class="row align-items-center py-3 px-xl-5">
-            <div class="col-lg-3 d-none d-lg-block">
-                <a href="" class="text-decoration-none">
-                    <h1 class="m-0 display-5 font-weight-semi-bold text-center">Toko Kosmetik</h1>
-                </a>
-            </div>
-            <div class="col-lg-6 col-6 text-left">
-                <form action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Pencarian untuk produk">
-                        <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col-lg-3 col-6 text-right">
-                @auth
-                <a href="{{route('keranjang')}}" class="btn border">
-                    <i class="fas fa-shopping-cart text-primary">Keranjang Saya</i>
-                    <span class="badge">0</span>
-                </a>
-                @endauth
 
-            </div>
-        </div>
     </div>
     <!-- Topbar End -->
 
@@ -149,21 +123,7 @@
 
                         </div>
                     </div>
-                    {{-- <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Newsletter</h5>
-                        <form action="">
-                            <div class="form-group">
-                                <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required" />
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control border-0 py-4" placeholder="Your Email"
-                                    required="required" />
-                            </div>
-                            <div>
-                                <button class="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe Now</button>
-                            </div>
-                        </form>
-                    </div> --}}
+
                 </div>
             </div>
         </div>

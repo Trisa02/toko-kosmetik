@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDiskonsTable extends Migration
+class CreateProvincesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateDiskonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('diskons', function (Blueprint $table) {
-            $table->increments('id_diskon');
-            $table->integer('id_barang');
-            $table->string('detail_diskon');
-            $table->string('gambar_diskon');
+        Schema::create('provinces', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedInteger('province_id');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateDiskonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('diskons');
+        Schema::dropIfExists('provinces');
     }
 }

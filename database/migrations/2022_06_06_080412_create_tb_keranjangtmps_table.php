@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDiskonsTable extends Migration
+class CreateTbKeranjangtmpsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateDiskonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('diskons', function (Blueprint $table) {
-            $table->increments('id_diskon');
+        Schema::create('tb_keranjangtmps', function (Blueprint $table) {
+            $table->increments('id_keranjang');
+            $table->integer('id');
             $table->integer('id_barang');
-            $table->string('detail_diskon');
-            $table->string('gambar_diskon');
+            $table->date('tanggal');
+            $table->integer('qty');
+            $table->float('total');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateDiskonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('diskons');
+        Schema::dropIfExists('tb_keranjangtmps');
     }
 }
