@@ -7,6 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicon -->
     <link href="{{asset('/')}}img/logo.png" rel="shortcut icon">
@@ -23,12 +24,17 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{asset('/')}}css/style.css" rel="stylesheet">
+    {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+
+
 
 
 </head>
 
 <body>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
     <!-- Topbar Start -->
     <div class="container-fluid">
         <div class="row bg-secondary py-2 px-xl-5">
@@ -40,10 +46,12 @@
                     <span class="text-muted px-2">|</span>
                     <a class="text-dark" href="{{route('logint')}}">Masuk</a>
                     @else
+
                     <span class="text-muted px-2">|</span>
                     <a class="text-dark" href="{{route('akun')}}">Akun {{session('id_user')}}</a>
                     <span class="text-muted px-2">|</span>
-
+                    <a class="text-dark" href="{{route('riwayat-transaksi')}}">Transaksi</a>
+                    <span class="text-muted px-2">|</span>
                     <form id="formLogout" method="post" action="{{route('logout')}}">
                     @csrf
                     <a onclick="logout()" href="#" class="text-dark">logout</a>
@@ -88,7 +96,7 @@
     @yield('content')
 
 
-    <!-- Footer Start -->
+
     <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
         <div class="row px-xl-5 pt-5">
             <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
@@ -147,6 +155,9 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
+    <script type="text/javascript"
+      src="https://app.sandbox.midtrans.com/snap/snap.js"
+      data-client-key="SB-Mid-client-QYR4W078nsRZZgzS"></script>
 
     <!-- JavaScript Libraries -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
@@ -157,8 +168,13 @@
     <script src="{{asset('/')}}mail/jqBootstrapValidation.min.js"></script>
     <script src="{{asset('/')}}mail/contact.js"></script>
 
+
     <!-- Template Javascript -->
     <script src="{{asset('/')}}js/main.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+    @stack('script')
 </body>
 
 </html>

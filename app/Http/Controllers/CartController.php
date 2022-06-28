@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Barang;
 use Illuminate\Support\Facades\DB;
+use App\Models\City;
+use App\Models\Province;
+use Kavist\RajaOngkir\Facades\RajaOngkir;
 
 
 class CartController extends Controller
@@ -15,9 +18,16 @@ class CartController extends Controller
         // dd(Auth::id());
         if(Auth::user() != null){
             // return redirect()->route('home');
+            $id_user = Auth::user()->id;
             $data['kategori'] = DB::table('kategoris')->get();
             $data['cart'] = DB::table('tb_keranjangtmps')
-            ->join('barangs','tb_keranjangtmps.id_barang','=','barangs.id_barang')->get();
+            ->join('barangs','tb_keranjangtmps.id_barang','=','barangs.id_barang')->where('id',$id_user)->get();
+
+            // $data["pro"] = Province::pluck('name','province_id');
+
+            // $data["pro"] = DB::table('provinces')->where('province_id', '32')->first();
+            // $data["pro1"] = DB::table('provinces')->get();
+
             return view ('Keranjang.cart',$data);
         }else{
             return redirect()->route('logint');
@@ -43,7 +53,7 @@ class CartController extends Controller
             $total = $harga * $request->qty;
 
             //cek id barang yang sama
-            $cek = DB:: table('tb_keranjangtmps')->where('id_barang',$request->id_barang)
+            $cek = DB::table('tb_keranjangtmps')->where('id_barang',$request->id_barang)
             ->where('id',$id)->first();
             if($cek==TRUE){
                 $simpan = DB::table('tb_keranjangtmps')->where('id_keranjang',$cek->id_keranjang)->update([
@@ -114,6 +124,32 @@ class CartController extends Controller
             ->update(['qty'=>$total,'total'=>$ttl]);
         }
         return back();
+    }
+
+    public function getCities($id){
+        $city = City::where('province_id',$id)->pluck('name','city_id');
+        return response()->json($city);
+    }
+
+    public function check_ongkir(Request $request,$id_user){
+        $berat=DB::table('tb_keranjangtmps')->where('id',$id_user)->get();
+
+        $totalbarek = 0;
+        foreach($berat as $br){
+
+            $barek =  DB::table('barangs')->where('id_barang',$br->id_barang)->first();
+
+            $totalbarek += $barek->berat;
+        }
+        $cost = RajaOngkir::ongkoskirim([
+            'origin'        => $request->city_origin,
+            'destination'   => $request->city_destination,
+            'weight'        => $totalbarek,
+            'courier'       => $request->courier
+        ])->get();
+        // dd($cost);
+
+        return response()->json($cost);
     }
 
 }

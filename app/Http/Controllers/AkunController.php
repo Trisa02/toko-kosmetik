@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use \App\Models\Login;
 use Auth;
+use App\Models\City;
+use App\Models\Province;
+use Kavist\RajaOngkir\Facades\RajaOngkir;
 
 class AkunController extends Controller
 {
@@ -17,7 +20,9 @@ class AkunController extends Controller
 
     public function akun(){
         $id = Auth::user()->id;
-        $data['akun'] = DB::table('tb_user')->where('id',$id)->first();
+        $data['akun'] = DB::table('tb_user')
+        ->where('id',$id)->first();
+        $data['provinces'] = Province::pluck('name','province_id');
         return view('Akun.akun',$data);
     }
 
@@ -26,7 +31,8 @@ class AkunController extends Controller
             'nama_user'=>'required',
             'username'=>'required',
             'email_user'=>'required',
-            'alamat'=>'required',
+            'province_destination'=>'required',
+            'city_destination'=>'required',
             'telepon'=>'required',
         ]);
         if($request->file('gambar')==''){
@@ -34,7 +40,8 @@ class AkunController extends Controller
                 'nama_user'=>$request->nama_user,
                 'username'=>$request->username,
                 'email_user'=>$request->email_user,
-                'alamat'=>$request->alamat,
+                'province_destination'=>$request->province_destination,
+                'city_destination'=>$request->city_destination,
                 'telepon'=>$request->telepon,
             ]);
         }else{
@@ -50,7 +57,8 @@ class AkunController extends Controller
                 'nama_user'=>$request->nama_user,
                 'username'=>$request->username,
                 'email_user'=>$request->email_user,
-                'alamat'=>$request->alamat,
+                'province_destination'=>$request->province_destination,
+                'city_destination'=>$request->city_destination,
                 'telepon'=>$request->telepon,
                 'gambar'=>$fileName
             ]);

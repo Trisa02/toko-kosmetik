@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\DB;
 use \App\Models\Login;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use\App\Models\City;
+use\App\Models\Province;
+use Kavist\RajaOngkir\Facades\RajaOngkir;
 
 class LoginController extends Controller
 {
@@ -15,7 +18,12 @@ class LoginController extends Controller
     }
 
     public function register(){
-        return view('register');
+        $provinces = Province::pluck('name','province_id');
+        return view('register',compact('provinces'));
+    }
+    public function getcities($id){
+        $city = City::where('province_id',$id)->pluck('name','city_id');
+        return response()->json($city);
     }
 
     public function input(Request $request){
@@ -24,7 +32,8 @@ class LoginController extends Controller
             'username'=>'required',
             'email_user'=>'required',
             'password'=>'required',
-            'alamat'=>'required',
+            'province_destination'=>'required',
+            'city_destination'=>'required',
             'telepon'=>'required',
             'gambar'=>'required'
         ]);
@@ -39,7 +48,8 @@ class LoginController extends Controller
             'username'=>$request->username,
             'email_user'=>$request->email_user,
             'password'=>Hash::make($request->password),
-            'alamat'=>$request->alamat,
+            'province_destination'=>$request->province_destination,
+            'city_destination'=>$request->city_destination,
             'telepon'=>$request->telepon,
             'gambar'=>$fileName
         ]);

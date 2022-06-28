@@ -42,7 +42,7 @@
                 </div>
                 <small class="pt-1">(50 Reviews)</small>
             </div>
-            <h3 class="font-weight-semi-bold mb-4">Rp.{{$dtl->harga}}</h3>
+            <h3 class="font-weight-semi-bold mb-4">Rp.{{number_format($dtl->harga)}}</h3>
             <h3 class="text-dark font-weight-medium mb-0 mr-2">Stok :{{$dtl->stok}}</h3>
 
             <div class="d-flex align-items-center mb-4 pt-2">
@@ -59,7 +59,16 @@
                         </button>
                     </div>
                 </div>
-                <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
+                <form action="{{route('simpan-cart')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="id_barang" value="{{$dtl->id_barang}}" >
+                    <input type="hidden" name="tanggal" id="tanggal" >
+                    <input type="hidden" name="qty" id="qty" value="1" >
+                    <input type="hidden" name="total" id="total">
+
+                    <button class="btn btn-primary px-3"><i
+                        class="fa fa-shopping-cart mr-1" ></i>Add To Cart</button>
+                </form>
             </div>
             <div class="d-flex pt-2">
                 <p class="text-dark font-weight-medium mb-0 mr-2">Share on:</p>
