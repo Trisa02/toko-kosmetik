@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@1.3.2/dist/select2-bootstrap4.min.css" rel="stylesheet" />
 
     <title>Belajar Validate</title>
   </head>
@@ -43,8 +45,19 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="alamat_user">Alamat User</label>
-                                            <textarea name="alamat" id="" cols="30" rows="5" class="form-control"></textarea>
+                                            <label>Provinsi </label>
+                                            <select class="form-control provinsi-tujuan" name="province_destination">
+                                                <option value="0">-- Pilih Provinsi --</option>
+                                                @foreach ($provinces as $province => $value)
+                                                    <option value="{{ $province  }}">{{ $value }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Kota / Kabupaten</label>
+                                            <select class="form-control kota-tujuan" name="city_destination">
+                                                <option value="">-- Pilih Kota --</option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="telepon">Telepon</label>
@@ -67,11 +80,41 @@
             </div>
         </div>
 
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".provinsi-tujuan, .kota-tujuan").select2({
+                theme:'boostrap',width:'style',
+            });
+            //ajax provinsi dan kota
+            $('select[name="province_destination"]').on('change', function () {
+            let provindeId = $(this).val();
+            if (provindeId) {
+                jQuery.ajax({
+                    url: '/cities-regist/'+provindeId,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (response) {
+                        $('select[name="city_destination"]').empty();
+                        $('select[name="city_destination"]').append('<option value="">-- pilih kota tujuan --</option>');
+                        $.each(response, function (key, value) {
+                            $('select[name="city_destination"]').append('<option value="' + key + '">' + value + '</option>');
+                        });
+                    },
+                });
+            } else {
+                $('select[name="city_destination"]').append('<option value="">-- pilih kota tujuan --</option>');
+            }
+        });
+    });
+    </script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--

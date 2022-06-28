@@ -10,7 +10,7 @@
         </div>
     </div>
 </div>
-<div class="container-fluid pt-5">
+<div class="container-fluid pt-8">
     <div class="row px-xl-5">
         <div class="col-lg-8 table-responsive mb-5">
             <table class="table table-bordered text-center mb-0">
@@ -30,7 +30,7 @@
                     @foreach ($cart as $c => $cr)
                     <tr>
                         <td class="align-middle"><img src="{{asset('gambar/'.$cr->gambar)}}" alt="" style="width: 50px;"> {{$cr->nama_barang}}</td>
-                        <td class="align-middle">{{$cr->harga}}</td>
+                        <td class="align-middle">Rp.{{number_format($cr->harga)}}</td>
                         <td class="align-middle">
                             <div class="input-group quantity mx-auto" style="width: 100px;">
                                 <div class="input-group-btn">
@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="align-middle">Rp.{{$cr->total}}</td>
+                        <td class="align-middle">Rp.{{number_format($cr->total)}}</td>
                         <td class="align-middle"><a href="{{route('hapus-cart',$cr->id_keranjang)}}" class="btn btn-sm btn-primary"><i class="fa fa-times"></i></a></td>
                     </tr>
                     @php
@@ -54,43 +54,9 @@
                         <td colspan="2" style="text-align: left">Rp. {{number_format($sub_total)}}</td>
                     </tr>
 
-
-
-
-
                 </tbody>
             </table>
-        </div>
-        <div class="col-lg-4">
-            {{-- <form class="mb-5" action="">
-                <div class="input-group">
-                    <input type="text" class="form-control p-4" placeholder="Coupon Code">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary">Apply Coupon</button>
-                    </div>
-                </div>
-            </form> --}}
-            <div class="card border-secondary mb-5">
-                <div class="card-header bg-secondary border-0">
-                    <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between mb-3 pt-1">
-                        <h6 class="font-weight-medium">Pilih Pengiriman</h6>
-                    </div>
-                    {{-- <div class="d-flex justify-content-between">
-                        <h6 class="font-weight-medium">Diskon</h6>
-                        <h6 class="font-weight-medium">$10</h6>
-                    </div> --}}
-                </div>
-                <div class="card-footer border-secondary bg-transparent">
-                    <div class="d-flex justify-content-between mt-2">
-                        <h5 class="font-weight-bold">Total Pembayaran</h5>
-                        <h5 class="font-weight-bold">$160</h5>
-                    </div>
-                    <button class="btn btn-block btn-primary my-3 py-3">Checkout</button>
-                </div>
-            </div>
+            <a href="{{route('penjualan')}}" class="btn btn-block btn-primary my-3 py-3">Checkout</a>
         </div>
     </div>
 </div>

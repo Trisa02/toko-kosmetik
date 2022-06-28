@@ -7,6 +7,7 @@ use App\Http\Controllers\Detailcontroller;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\TransaksiController;
 
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\BrandController;
@@ -32,7 +33,7 @@ use App\Http\Controllers\admin\KeranjanggController;
 
 
 //route frontend ini untuk ica
-Route::get('/',[Homecontroller::class, 'index'])->name('home');
+Route::get('/',[Homecontroller::class, 'index'])->name('homes');
 Route::get('detail/{slug}',[HomeController::class,'detail'])->name('detail');
 Route::get('kategori-produk/{slug_kategori}',[HomeController::class,'kategori_produk'])->name('kategori.produk');
 Route::get('brands/{nama_barang}',[HomeController::class,'brands'])->name('kategori.brands');
@@ -41,8 +42,10 @@ Route::get('/cari-barang/{tnama}',[HomeController::class,'cari'])->name('cari');
 
 Route::group(['middleware'=>'guest:member'],function(){
     Route::get('logint',[LoginController::class,'logint'])->name('logint');
-    Route::post('aksilogint',[LoginController::class,'aksilogint'])->name('aksilogint');
+    Route::post('aksi-logint',[LoginController::class,'aksilogint'])->name('aksilogint');
+
     Route::get('registert',[LoginController::class,'register'])->name('registert');
+    Route::get('/cities-register/{province_id}',[LoginController::class,'getcities'])->name('cities-register');
     Route::post('input',[LoginController::class,'input'])->name('input');
 
 
@@ -51,13 +54,25 @@ Route::group(['middleware'=>'guest:member'],function(){
 
 Route::group(['middleware'=>['web','auth:member']],function(){
     Route::get('home',[HomeController::class,'index'])->name('home');
-    Route::get('cart',[CartController::class,'cart'])->name('cart');
+
+    Route::get('cart',[CartController::class,'cart'])->name('carts');
     Route::post('simpan-cart',[CartController::class,'keranjang'])->name('simpan-cart');
     Route::get('hapus-cart/{id}',[CartController::class,'hapus'])->name('hapus-cart');
     Route::get('qtytambah/{id_keranjang}/{id_barang}',[CartController::class,'qtytambah'])->name('qtytambah');
     Route::get('qtykurang/{id_keranjang}/{id_barang}',[CartController::class,'qtykurang'])->name('qtykurang');
+
+    Route::post('cart/{id?}',[CartController::class,'check_ongkir'])->name('cart');
+    Route::get('/cities/{province_id}',[CartController::class,'getCities'])->name('cities');
+
+    Route::get('penjualan-barang',[TransaksiController::class,'penjualan'])->name('penjualan');
+    Route::post('send-result-midtrans', [TransaksiController::class, 'send_result_midtrans'])->name('send.result.midtrans');
+
+    Route::get('transaksi-selesai/{invoice}',[TransaksiController::class,'selesai'])->name('transaksi-selesai');
+    Route::get('riwayat-transaksi',[HomeController::class,'riwayat_transaksi'])->name('riwayat-transaksi');
+    Route::get('detail-transaksi/{order_id}',[HomeController::class,'detail_transaksi'])->name('detail-transaksi');
+
     Route::get('akun',[AkunController::class,'akun'])->name('akun');
-    Route::post('edit/akun/{id}',[AkunController::class,'editakun'])->name('editakun');
+    Route::post('edit-akun/{id}',[AkunController::class,'editakun'])->name('editakun');
     // Route::get('akun/{id}',[AkunController::class,'akun'])->name('akun');
     Route::post('logout',[Logincontroller::class,'logout'])->name('logout');
 
@@ -70,7 +85,7 @@ Route::group(['middleware'=>['web','auth:member']],function(){
 Route::group(['prefix' => 'admin'],function () {
 
 
-    
+
         Route::get('/',[UserappController::class, 'login'])->name('login');
         Route::post('aksi_login',[UserappController::class, 'aksi_login'])->name('aksi_login');
     	Route::get('dashboard',[DashboardController::class, 'index'])->name('dashboard');
@@ -109,8 +124,8 @@ Route::group(['prefix' => 'admin'],function () {
         Route::get('edit_user/{id}',[UserappController::class, 'edit_user'])->name('edit_user');
         Route::post('update_user',[UserappController::class, 'update_user'])->name('update_user');
         Route::get('hapus_user/{id}',[UserappController::class, 'hapus_user'])->name('hapus_user');
-    	
-    	
+
+
         Route::post('adminLogout',[UserappController::class,'adminLogout'])->name('adminLogout');
 
         Route::get('member',[AkunController::class, 'member'])->name('member');

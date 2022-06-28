@@ -18,6 +18,7 @@
                 <button type="button" onclick="cariBarang()" id="btnCari" class="btn btn-info" style="margin-top:32px; color:white;">
                     <i class="bi bi-search"></i>Cari
                 </button>
+
             </div>
         </form>
     </div>
@@ -25,10 +26,9 @@
         @auth
         <a href="{{route('cart')}}" class="btn border">
             <i class="fas fa-shopping-cart text-primary">Keranjang Saya</i>
-            <span class="badge">0</span>
+            <span class="badge">{{$jumlah}}</span>
         </a>
         @endauth
-
     </div>
 </div>
 <div class="container-fluid mb-5">
@@ -173,7 +173,7 @@
                     <h6 class="text-truncate mb-3">{{$brg->nama_barang}}</h6>
                     <div class="d-flex justify-content-center">
 
-                        <h6>Rp{{$brg->harga}}</h6>
+                        <h6>Rp{{number_format($brg->harga)}}</h6>
                         <h6 class="text-muted ml-2"></h6>
 
                     </div>
@@ -181,8 +181,6 @@
                 <div class="card-footer d-flex justify-content-between bg-light border">
                     <a href="{{route('detail',$brg->slug_barang)}}" class="btn btn-sm text-dark p-0"><i
                             class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                    {{-- <a href="{{route('cart')}}" class="btn btn-sm text-dark p-0"><i
-                            class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a> --}}
                     <form action="{{route('simpan-cart')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="id_barang" value="{{$brg->id_barang}}" >

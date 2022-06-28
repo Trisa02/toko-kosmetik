@@ -15,7 +15,8 @@ class Login extends Model
         'username',
         'email_user',
         'password',
-        'alamat',
+        'province_destination',
+        'city_destination',
         'telepon',
         'gambar',
     ];
